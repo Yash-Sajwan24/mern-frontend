@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useAsyncError, useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -9,6 +9,8 @@ const Signup = () => {
     password: "",
     phone: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   let name, value;
   const handleInput = (e) => {
@@ -26,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
 
     const {name, email, password, phone} = user;
-
+    setLoading(true);
     const res = await fetch("/register", {
         method : "POST", 
         headers : {
@@ -38,6 +40,8 @@ const Signup = () => {
     });
 
     const data =await res.json();
+
+    setLoading(false);
 
     if(!data || data.status === 422){
         window.alert("Invalid Registration");
@@ -51,6 +55,7 @@ const Signup = () => {
   }
   return (
     <>
+    {loading ? <h1 style={{position: "fixed", top : "50%", left: "50%", transform : "translate(-50%, -80%)"}}>Loading...</h1>: ""}
       <form method="post" onSubmit={handleSignUp}>
         <div className="col">
           <input
