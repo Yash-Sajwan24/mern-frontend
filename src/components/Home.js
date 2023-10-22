@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
 
 const Home = () => {
   return (
-    <div>
-      This is the Home page
+    <div
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <h1>Welcome! I am a MERN Developer.</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
