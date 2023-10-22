@@ -2,7 +2,15 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <>
+    <form > 
+    <div className="col" style={{marginTop : "50px"}} >
+    <input type="email" className="form-control w-25 mx-auto mt-3 " placeholder="Email" aria-label="Email" />
+    <input type="password" className="form-control w-25 mx-auto mt-3 " placeholder="Password" aria-label="Password" />
+    <button style={{  backgroundColor: "yellow", display: "flex", alignItems: "center", justifyContent: "center"}} type='submit' className='w-25 mx-auto mx-auto mt-3'> Login</button>
+    </div>
+    </form>
+    </>
   )
 }
 
