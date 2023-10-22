@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+    const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -20,6 +21,34 @@ const Signup = () => {
       [name]: value
     });
   };
+
+  const handleSignUp =  async (e) => {
+    e.preventDefault();
+
+    const {name, email, password, phone} = user;
+
+    const res = await fetch("/register", {
+        method : "POST", 
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            name, email, password, phone,
+        })
+    });
+
+    const data =await res.json();
+
+    if(!data || data.status === 422){
+        window.alert("Invalid Registration");
+        console.log("invalid");
+    }
+    else{
+        console.log("success");
+        navigate('../login');
+    }
+
+  }
   return (
     <>
       <form>
@@ -66,6 +95,7 @@ const Signup = () => {
             }}
             type="submit"
             className="w-25 mx-auto mx-auto mt-3 bg-dark"
+            onClick={handleSignUp}
           >
             {" "}
             Register
