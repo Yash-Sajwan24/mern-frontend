@@ -51,7 +51,7 @@ const Signup = () => {
   }
   return (
     <>
-      <form>
+      <form method="post" onSubmit={handleSignUp}>
         <div className="col">
           <input
             type="text"
@@ -60,6 +60,7 @@ const Signup = () => {
             aria-label="name"
             value={user.name}
             onChange={handleInput}
+            required
           />
           <input
             type="email"
@@ -68,6 +69,7 @@ const Signup = () => {
             aria-label="email"
             value={user.email}
             onChange={handleInput}
+            required
           />
           <input
             type="password"
@@ -76,6 +78,7 @@ const Signup = () => {
             aria-label="password"
             value={user.password}
             onChange={handleInput}
+            required
           />
           <input
             type="number"
@@ -84,6 +87,7 @@ const Signup = () => {
             aria-label="phone"
             value={user.phone}
             onChange={handleInput}
+            required
           />
           <button
             style={{
@@ -95,7 +99,6 @@ const Signup = () => {
             }}
             type="submit"
             className="w-25 mx-auto mx-auto mt-3 bg-dark"
-            onClick={handleSignUp}
           >
             {" "}
             Register
