@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , NavLink} from "react-router-dom";
 
 
 const Login = () => {
@@ -79,6 +79,10 @@ const Login = () => {
           </button>
         </div>
       </form>
+
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <NavLink to="/signup"> Create a new account</NavLink>
+      </div>
     </>
   );
 };
