@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { NavLink, useAsyncError, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -43,8 +43,8 @@ const Signup = () => {
 
     setLoading(false);
 
-    if(!data || data.status === 422){
-        window.alert("Invalid Registration");
+    if(data.error || !data){
+        window.alert([data.error]);
         console.log("invalid");
     }
     else{
@@ -63,36 +63,36 @@ const Signup = () => {
             className="form-control w-25 mx-auto mt-5 "
             placeholder="Name"
             aria-label="name"
+            required
             value={user.name}
             onChange={handleInput}
-            required
           />
           <input
             type="email"
             className="form-control w-25 mx-auto mt-3 "
             placeholder="Email"
             aria-label="email"
+            required
             value={user.email}
             onChange={handleInput}
-            required
           />
           <input
             type="password"
             className="form-control w-25 mx-auto mt-3 "
             placeholder="Password"
             aria-label="password"
+            required
             value={user.password}
             onChange={handleInput}
-            required
           />
           <input
             type="number"
             className="form-control w-25 mx-auto mt-3 "
             placeholder="Phone"
             aria-label="phone"
+            required
             value={user.phone}
             onChange={handleInput}
-            required
           />
           <button
             style={{
