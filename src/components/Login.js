@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import { useNavigate , NavLink} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
+import Lottie from "lottie-react";
+import load from "../loading.json";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,34 +17,39 @@ const Login = () => {
 
     setLoading(true);
 
-    const res = await fetch('/signin', {
-      method : "POST", 
-      headers : {
-        "Content-Type" : 'application/json', 
-      }, 
+    const res = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        email, password
-      })
+        email,
+        password,
+      }),
     });
 
     const data = await res.json();
 
     setLoading(false);
 
-    if(data.error || !data){
+    if (data.error || !data) {
       window.alert([data.error]);
       console.log("invalid");
-    }
-    else {
+    } else {
       console.log("success");
-      navigate('../about');
+      navigate("../about");
     }
-
-  }
+  };
 
   return (
     <>
-    {loading ? <h1 style={{position: "fixed", top : "50%", left: "50%", transform : "translate(-50%, -80%)"}}>Loading...</h1>: ""}
+      {loading ? (
+        <div className="loading">
+          <Lottie animationData={load} />
+        </div>
+      ) : (
+        ""
+      )}
       <form method="POST" onSubmit={handleLogin}>
         <div className="col" style={{ marginTop: "50px" }}>
           <input
@@ -52,7 +59,9 @@ const Login = () => {
             aria-label="Email"
             required
             value={email}
-            onChange={(e)=> {setEmail(e.target.value)}}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
           <input
             type="password"
@@ -61,7 +70,9 @@ const Login = () => {
             aria-label="Password"
             required
             value={password}
-            onChange={(e)=> {setPassword(e.target.value)}}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
           <button
             style={{

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import Lottie from 'lottie-react';
+import load from '../loading.json';
 
 
 const About = () => {
@@ -41,7 +43,10 @@ const About = () => {
 
   return (
     <>
-     {loading ? <h1 style={{position: "fixed", top : "50%", left: "50%", transform : "translate(-50%, -80%)"}}>Loading...</h1>: ""}
+     {loading ?  <div className='loading'>
+          <Lottie animationData={load} />
+      </div>: ""}
+    
      <div
       style={{
         width: "50%",
@@ -58,7 +63,7 @@ const About = () => {
         fontSize : "20px"
       }}
     >
-        <h3>Name</h3>  {data.name} <br></br><br></br>
+        <h3>Name</h3>  {data.name ? data.name[0].toUpperCase() + data.name.slice(1).toLowerCase() : data.name} <br></br><br></br>
         <h3>Email</h3>  {data.email}<br></br><br></br>
         <h3>Phone</h3>  {data.phone}<br></br><br></br>
 

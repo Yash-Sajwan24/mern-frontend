@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import Lottie from "lottie-react";
+import load from "../loading.json";
+
 const Signup = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -14,48 +17,54 @@ const Signup = () => {
 
   let name, value;
   const handleInput = (e) => {
-   
     name = e.target.ariaLabel;
     value = e.target.value;
 
     setUser({
       ...user,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSignUp =  async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
-    const {name, email, password, phone} = user;
+    const { name, email, password, phone } = user;
     setLoading(true);
     const res = await fetch("/register", {
-        method : "POST", 
-        headers : {
-            "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({
-            name, email, password, phone,
-        })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        phone,
+      }),
     });
 
-    const data =await res.json();
+    const data = await res.json();
 
     setLoading(false);
 
-    if(data.error || !data){
-        window.alert([data.error]);
-        console.log("invalid");
+    if (data.error || !data) {
+      window.alert([data.error]);
+      console.log("invalid");
+    } else {
+      console.log("success");
+      navigate("../login");
     }
-    else{
-        console.log("success");
-        navigate('../login');
-    }
-
-  }
+  };
   return (
     <>
-    {loading ? <h1 style={{position: "fixed", top : "50%", left: "50%", transform : "translate(-50%, -80%)"}}>Loading...</h1>: ""}
+      {loading ? (
+        <div className="loading">
+          <Lottie animationData={load} />
+        </div>
+      ) : (
+        ""
+      )}
       <form method="post" onSubmit={handleSignUp}>
         <div className="col">
           <input
