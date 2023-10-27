@@ -5,16 +5,12 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
 
-  const [data, setData] = useState({
-    name : '', 
-    email: '', 
-    phone : '',
-  });
-  
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const callAboutUsPage = async () => {
     try{
-
+      setLoading(true);
       const res = await fetch("/about", {
         method: "GET", 
         headers : {
@@ -29,9 +25,12 @@ const About = () => {
         throw new Error(res.error);
       }
       setData(data);
+
+      setLoading(false);
       
     }
     catch(err){
+      setLoading(false);
       navigate('../login');
     }
   }
@@ -41,7 +40,9 @@ const About = () => {
   }, []);
 
   return (
-    <div
+    <>
+     {loading ? <h1 style={{position: "fixed", top : "50%", left: "50%", transform : "translate(-50%, -80%)"}}>Loading...</h1>: ""}
+     <div
       style={{
         width: "50%",
         height: "400px",
@@ -62,6 +63,8 @@ const About = () => {
         <h3>Phone</h3>  {data.phone}<br></br><br></br>
 
     </div>
+    </>
+   
   );
 };
 
