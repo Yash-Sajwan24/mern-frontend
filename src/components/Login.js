@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 import Lottie from "lottie-react";
 import load from "../loading.json";
 
+import { UserContext } from "../App";
+
 const Login = () => {
+  const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -36,6 +39,7 @@ const Login = () => {
       window.alert([data.error]);
       console.log("invalid");
     } else {
+      dispatch({ type: "USER", payload: true });
       console.log("success");
       navigate("../about");
     }
