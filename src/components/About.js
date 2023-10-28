@@ -29,7 +29,6 @@ const About = () => {
       setData(data);
 
       setLoading(false);
-      
     }
     catch(err){
       setLoading(false);
