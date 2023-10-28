@@ -28,7 +28,7 @@ const Contact = () => {
     const { name, email, phone, message } = data;
     try{
 
-      const res = await fetch("https://mernbackend-0so8.onrender.com/contact", {
+      const res = await fetch("https://mern-backend-fawn.vercel.app/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Contact = () => {
   const contactPageData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/https://mernbackend-0so8.onrender.com/getdata", {
+      const res = await fetch("https://mern-backend-fawn.vercel.app/getdata", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
