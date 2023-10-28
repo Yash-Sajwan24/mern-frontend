@@ -13,7 +13,7 @@ const About = () => {
   const callAboutUsPage = async () => {
     try{
       setLoading(true);
-      const res = await fetch("/about", {
+      const res = await fetch("https://mernbackend-0so8.onrender.com/about", {
         method: "GET", 
         headers : {
           Accept: 'application/json', 

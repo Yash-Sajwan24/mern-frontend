@@ -31,7 +31,7 @@ const Signup = () => {
 
     const { name, email, password, phone } = user;
     setLoading(true);
-    const res = await fetch("/register", {
+    const res = await fetch("https://mernbackend-0so8.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -7,7 +7,7 @@ const Logout = () => {
   const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("/logout", {
+    fetch("https://mernbackend-0so8.onrender.com/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

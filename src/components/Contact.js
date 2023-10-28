@@ -28,7 +28,7 @@ const Contact = () => {
     const { name, email, phone, message } = data;
     try{
 
-      const res = await fetch("/contact", {
+      const res = await fetch("https://mernbackend-0so8.onrender.com/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Contact = () => {
   const contactPageData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/getdata", {
+      const res = await fetch("/https://mernbackend-0so8.onrender.com/getdata", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

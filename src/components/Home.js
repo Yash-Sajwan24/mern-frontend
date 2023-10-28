@@ -9,7 +9,7 @@ const Home = () => {
   const aboutPage = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/home", {
+      const res = await fetch("https://mernbackend-0so8.onrender.com/home", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

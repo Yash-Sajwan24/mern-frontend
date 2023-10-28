@@ -20,7 +20,7 @@ const Login = () => {
 
     setLoading(true);
 
-    const res = await fetch("/signin", {
+    const res = await fetch("https://mernbackend-0so8.onrender.com/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
